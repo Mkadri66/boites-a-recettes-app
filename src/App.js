@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+
 // CSS
 import './App.css'
 
 // Components
 import Header from './components/Header'
 import Admin from './components/Admin'
+import Card from './components/Card'
 
 // Recettes
-import recettes from './recettes'
+import recettesAPI from './recettes'
 
 class App extends Component {
   state = {
@@ -15,19 +17,23 @@ class App extends Component {
     recettes: {}
   }
 
-  chargerExemple = () => this.setState({recettes})
+  chargerExemple = () => this.setState({recettes : recettesAPI})
 
   render () {
-    console.log(recettes)
+    //console.log(recettes)
+    const cards = Object.keys(this.state.recettes)
+                        .map(key => <Card 
+                                      details={this.state.recettes[key]}
+                                      key={key}
+                                      />)
+    // console.log(cards)
     return (
       <div className='box'>
         <Header
           pseudo={this.state.pseudo}
         />
         <div className='cards'>
-          <div className='card'>
-            <h2>Une Carte</h2>
-          </div>
+           { cards }
         </div>
         <Admin
           chargerExemple={this.chargerExemple}

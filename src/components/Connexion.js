@@ -6,7 +6,7 @@ class Connexion extends Component {
     pseudo: '',
     goToApp: false
   }
-
+  
   goToApp = event => {
     event.preventDefault()
     this.setState({ goToApp: true })
