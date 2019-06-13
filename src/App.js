@@ -11,13 +11,33 @@ import Card from './components/Card'
 // Recettes
 import recettesAPI from './recettes'
 
+// Firebase
+import base from './base'
+
 class App extends Component {
   state = {
     pseudo: this.props.match.params.pseudo,
     recettes: {}
   }
 
+  componentDidMount(){
+    this.ref = base.syncState(`/${this.state.pseudo}/recettes`,{
+      context: this,
+      state:'recettes'  
+    })
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref)
+  }
+
   chargerExemple = () => this.setState({recettes : recettesAPI})
+
+  ajouterRecette = (recette) => {
+    const recettes = {...this.state.recettes}
+    recettes[`recette-${Date.now()}`] = recette
+    this.setState({recettes})
+  }
 
   render () {
     //console.log(recettes)
@@ -37,6 +57,7 @@ class App extends Component {
         </div>
         <Admin
           chargerExemple={this.chargerExemple}
+          ajouterRecette={this.ajouterRecette} 
         />
       </div>
     )
