@@ -16,8 +16,8 @@ class AjouterRecette extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const recette = {... this.state}
-        console.log(recette)
+        const recette = {...this.state}
+        // console.log(recette)
         this.props.ajouterRecette(recette)
         // Reset 
         Object.keys(recette).forEach(item => {
@@ -27,7 +27,7 @@ class AjouterRecette extends Component {
     }
     render() {
         return (
-            <div className="cards">
+            <div className="card">
                 <form className="admin-form ajouter-recette" 
                       onSubmit={this.handleSubmit}>
                     <input name="nom" 
@@ -52,7 +52,7 @@ class AjouterRecette extends Component {
                               onChange={this.handleChange} 
                               placeholder="Liste des instructions">
                     </textarea>
-                    <button type="submit">Ajouter une recette</button>
+                    <button>Ajouter une recette</button>
                 </form>
             </div>
         )
