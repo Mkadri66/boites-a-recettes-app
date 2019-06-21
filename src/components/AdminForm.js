@@ -3,6 +3,7 @@ import React from 'react'
 const AdminForm = ({
     id : key,
     majRecette,
+    supprimerRecette,
     recettes}) => 
     {
         // Recette que l'on veut modifier
@@ -49,8 +50,8 @@ const AdminForm = ({
                         rows="15" 
                         placeholder="Liste des instructions">
                     </textarea>
-                    <button type="submit">Supprimer</button>
                 </form>
+                <button onClick={ () => supprimerRecette(key)}>Supprimer</button>
             </div>
         )
 }
